@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Projeto Estudo HTML</title>
+</head>
+<body>
+    <style>html { scroll-behavior: smooth; } /*deixa responsivo, assim que for clicado em serviços e for decido lá pra baixo, isso vai fazer com que a descida seja suave e não brusca. */
+body { background-color:  #ffffff; /*deixa o fundo da página cinza, pra destacar mais o banner e o texto */ 
+font-family: Arial, sans-serif; /*define a fonte da página como Arial, ou uma fonte sans-serif caso a Arial não esteja disponível, pra deixar o texto mais legível e moderno */
+color: black; /*deixa o texto da página preto, pra ele se destacar mais sobre o fundo branco */
+margin: 0; /*remove a margem padrão da página, pra o banner ocupar toda a largura */
+}
+.banner {
+    position: relative; /*necessário para o overlay escuro funcionar */
+    height: 500px; /*define a altura do banner */
+    background-image: url("A VIDA PRECISA.....jpg"); /*deixa a imagem de fundo do banner */
+    background-size: cover; /*serve para a imagem ocupar todo o espaço do banner, sem distorcer */
+    background-position: center; /*centraliza a imagem no banner */
+    display: flex; /*deixa o banner um flex container, pra centralizar o texto */
+    justify-content: center; /*centraliza o texto horizontalmente */
+    align-items: center; /*centraliza o texto verticalmente */
+}
+
+.banner::before /*cria um pseudo-elemento para o overlay escuro */{ 
+    content: ''; /*necessário para o pseudo-elemento aparecer */
+    position: absolute; /*deixa o overlay posicionado em relação ao banner */
+    inset: 0; /*faz o overlay ocupar todo o espaço do banner */
+    background: rgba(0, 0, 0, 0.55); /*deixa o overlay preto com 55% de opacidade, pra escurecer a imagem de fundo e deixar o texto mais legível */
+} 
+
+.titulo {
+    position: relative; /*necessário para o texto ficar acima do overlay escuro */
+    z-index: 1; /*deixa o texto acima do overlay escuro, pra ele ficar visível */  
+    text-align: center; /*centraliza o texto dentro do banner */
+    color: white; /*deixa o texto branco, pra ele se destacar mais sobre a imagem de fundo escura */
+    background-color: rgba(0, 0, 0, 0.45); /*deixa o fundo do texto preto com 45% de opacidade, pra destacar o texto ainda mais sobre a imagem de fundo escura */
+    padding: 30px; /*deixa um espaço entre o texto e o fundo do texto, pra ele ficar mais legível */
+    border-radius: 10px; /*deixa as bordas do fundo do texto arredondadas, pra ele ficar mais bonito */
+}
+button {border: none; /*remove a borda padrão do botão, pra ele ficar mais moderno */
+cursor: pointer; /*deixa o cursor em forma de mão quando passar sobre o botão, pra indicar que ele é clicável */
+font-family: Arial, Helvetica, sans-serif; /*define a fonte do botão como Arial, ou uma fonte sans-serif caso a Arial não esteja disponível, pra deixar o texto do botão mais legível e moderno */
+font-size: 18px; /*define o tamanho da fonte do botão como 18 pixels, pra ele se destacar mais sobre o fundo do banner */
+height: 60px;
+width: 200px;
+display: flex; /*deixa o botão um flex container, pra centralizar o texto do botão */
+justify-content: center; /*centraliza o texto do botão horizontalmente */
+align-items: center; /*centraliza o texto do botão verticalmente */
+letter-spacing: 2px; /*deixa um espaço entre as letras do texto do botão, pra ele ficar mais legível e moderno */
+margin-left: auto; /*deixa um espaço entre o botão e o texto do botão, pra ele ficar mais legível e moderno */
+margin-right: auto; /*deixa um espaço entre o botão e o texto do botão, pra ele ficar mais legível e moderno */
+font-weight: bold; /*deixa o texto do botão em negrito, pra ele se destacar mais sobre o fundo do banner */
+transition: background-color 0.3s ease; /*deixa a mudança de cor do botão mais suave quando passar o mouse sobre ele */
+border-radius: 20px; /*deixa as bordas do botão arredondadas, pra ele ficar mais bonito */
+}
+button:hover { /*quando passar o mouse sobre o botão */
+    background-color: #FFFF00; /*deixa a cor de fundo do botão amarela, pra ele se destacar mais sobre o fundo do banner */
+    transform: scale(1.25); /*deixa o botão um pouco maior, pra ele se destacar mais sobre o fundo do banner */
+}
+.texto {align-items: center; /*centraliza os elementos dentro do texto, pra eles ficarem mais legíveis e organizados */
+display: flex; /*deixa o texto um flex container, pra centralizar os elementos dentro do texto */
+justify-content: center; /*centraliza o texto dentro do corpo do site, pra ele ficar mais legível e organizado */
+flex-direction: column; /*deixa os elementos dentro do texto organizados em coluna, pra eles ficarem mais legíveis e organizados */
+}
+p {padding: 5px; /*deixa um espaço entre o texto do parágrafo e o fundo do parágrafo, pra ele ficar mais legível e organizado */
+margin: 0; /*remove a margem padrão do parágrafo, pra ele ficar mais legível e organizado */
+text-align: center; /*centraliza o texto dentro do parágrafo, pra ele ficar mais legível e organizado */
+font-size: 18px; /*define o tamanho da fonte do parágrafo como 18 pixels, pra ele se destacar mais sobre o fundo do site */
+letter-spacing: 2px; /*deixa um espaço entre as letras do texto do parágrafo, pra ele ficar mais legível e moderno */
+font-weight: bold; /*deixa o texto do parágrafo em negrito, pra ele se destacar mais sobre o fundo do site */
+}
+.carrosel {display: flex; /*deixa o carrossel um flex container, pra organizar os elementos dentro do carrossel */
+width: 90%; /*define a largura do carrossel como 90% da largura disponível, pra ele ficar mais legível e organizado */
+margin: 60px auto; /*deixa um espaço entre o carrossel e o topo do site, e centraliza o carrossel horizontalmente, pra ele ficar mais legível e organizado */
+overflow-x: auto; /*deixa o carrossel rolável horizontalmente, pra ele ficar mais legível e organizado */
+gap: 1em; /*deixa um espaço entre os elementos dentro do carrossel, pra eles ficarem mais legíveis e organizados */
+overflow: hidden; /*esconde o conteúdo que ultrapassar as bordas do carrossel, pra ele ficar mais legível e organizado */
+}
+.carrosel-grupo {display: flex; /*deixa o grupo de cards um flex container, pra organizar os cards dentro do grupo */
+align-items: center; /*centraliza os cards dentro do grupo, pra eles ficarem mais legíveis e organizados */
+gap: 1em; /*deixa um espaço entre os cards dentro do grupo, pra eles ficarem mais legíveis e organizados */
+justify-content: center; /*centraliza o grupo de cards dentro do carrossel, pra ele ficar mais legível e organizado */
+animation: spin 8s infinite linear; /*aplica a animação de rotação ao grupo de cards, pra ele ficar mais dinâmico e interessante */
+padding-right: 1em; /*deixa um espaço entre o último card do grupo e a borda do carrossel, pra ele ficar mais legível e organizado */
+flex-shrink: 0; /*impede que o grupo de cards encolha quando o carrossel for rolado, pra ele ficar mais legível e organizado */
+}
+.carrosel::-webkit-scrollbar {display: none; /*esconde a barra de rolagem do carrossel no navegador Chrome, pra ele ficar mais limpo e organizado */}
+.card {
+flex: 0 0 280px; /*define a largura do card como 5 vezes a largura da fonte, pra ele ficar mais legível e organizado */
+padding: 1em; /*deixa um espaço entre o conteúdo do card e o fundo do card, pra ele ficar mais legível e organizado */
+background-color: #2a2a2a; /*deixa a cor de fundo do card cinza, pra ele se destacar mais sobre o fundo do site */
+font-size: 3rem; /*define o tamanho da fonte do card como 3 vezes o tamanho da fonte, pra ele se destacar mais sobre o fundo do site */
+border-radius: 12px; /*deixa as bordas do card arredondadas, pra ele ficar mais bonito */
+text-align: center; /*centraliza o texto dentro do card, pra ele ficar mais legível e organizado */
+align-content: center; /*centraliza o conteúdo dentro do card, pra ele ficar mais legível e organizado */
+display: flex; /*deixa o card um flex container, pra centralizar o conteúdo dentro do card */
+flex-direction: column; /*deixa o conteúdo dentro do card organizado em coluna, pra ele ficar mais legível e organizado */
+overflow: hidden; /*esconde o conteúdo que ultrapassar as bordas do card, pra ele ficar mais legível e organizado */
+}
+.card img {width: 100%; /*deixa a imagem do card ocupar toda a largura do card, pra ela ficar mais legível e organizada */
+    height: 180px; /*define a altura da imagem do card como 180 pixels, pra ela ficar mais legível e organizada */
+    object-fit: cover; /*faz a imagem do card cobrir toda a área da imagem, sem distorcer, pra ela ficar mais legível e organizada */}
+.card h3 {font-size: 20px /*define o tamanho da fonte do título do card como 20 pixels, pra ele se destacar mais sobre o fundo do card */;
+    margin: 16px 0 8px; /*deixa um espaço entre o título do card e o conteúdo do card, pra ele ficar mais legível e organizado */
+color: white}
+.card p {font-size: 14px; /*define o tamanho da fonte do texto do card como 14 pixels, pra ele se destacar mais sobre o fundo do card */
+    font-weight: normal; /*deixa o texto do card com peso normal, pra ele ficar mais legível e organizado */
+    color: white; /*deixa a cor do texto do card branca com 75% de opacidade, pra ele se destacar mais sobre o fundo cinza do card */
+    flex: 1; /*faz o texto do card ocupar todo o espaço disponível dentro do card, pra ele ficar mais legível e organizado */
+    padding: 0 16px; /*deixa um espaço entre o texto do card e as bordas do card, pra ele ficar mais legível e organizado */
+    letter-spacing: 0; /*deixa um espaço entre as letras do texto do card, pra ele ficar mais legível e moderno */}
+ .card button {
+    margin: 16px auto;
+    width: 160px;
+    height: 45px;
+    font-size: 14px;
+    background-color: #f0a500;
+    color: white;
+}
+@keyframes spin { /*define a animação de rotação do card, pra ele ficar mais dinâmico e interessante */
+from {translate: 0; /*começa a animação com o card na posição original, pra ele ficar mais legível e organizado */ }
+to {translate: -100%; /*termina a animação com o card deslocado para a esquerda, pra ele ficar mais legível e organizado */ }
+}
+a {display: block; /*deixa o link um elemento de bloco, pra ele ocupar toda a largura disponível e ficar mais legível e organizado */
+text-decoration: none; /*remove o sublinhado padrão dos links, pra eles ficarem mais modernos e organizados */
+color: black; /*deixa a cor dos links preta, pra eles se destacar mais sobre o fundo branco do site */
+font-family: Arial, Helvetica, sans-serif; /*define a fonte dos links como Arial, ou uma fonte sans-serif caso a Arial não esteja disponível, pra deixar o texto dos links mais legível e moderno */
+transition: opacity 0.8 /*deixa a mudança de cor do link mais suave quando passar o mouse sobre ele */;}
+
+a:hover {opacity: 0.7; /*deixa o link um pouco transparente quando passar o mouse sobre ele, pra indicar que ele é clicável */ }
+.logo {font-size: 24px; /*define o tamanho da fonte do logo como 24 pixels, pra ele se destacar mais sobre o fundo branco do site */
+text-transform: uppercase; /*deixa o texto do logo em maiúsculas, pra ele se destacar mais sobre o fundo branco do site */
+letter-spacing: 4px; /*deixa um espaço entre as letras do texto do logo, pra ele ficar mais legível e moderno */
+}
+nav {display: flex; /*deixa a barra de navegação um flex container, pra organizar os elementos dentro da barra de navegação */
+align-items: center; /*centraliza os elementos dentro da barra de navegação, pra eles ficarem mais legíveis e organizados */
+justify-content: space-around; /*deixa um espaço entre os elementos dentro da barra de navegação, pra eles ficarem mais legíveis e organizados */
+font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif; /*define a fonte da barra de navegação como system-ui, ou uma fonte sans-serif caso a system-ui não esteja disponível, pra deixar o texto da barra de navegação mais legível e moderno */
+background-color: white;
+position: relative; /*necessário para o menu móvel funcionar, pra ele ficar mais legível e organizado */
+}
+.nav-lista {display: flex; /*deixa a lista de navegação um flex container, pra organizar os itens dentro da lista de navegação */
+list-style: none; /*remove os marcadores padrão da lista, pra ela ficar mais moderna e organizada */}
+
+.nav-lista li {margin-left: 32px; /*deixa um espaço entre os itens da lista de navegação, pra eles ficarem mais legíveis e organizados */
+letter-spacing: 3px; /*deixa um espaço entre as letras dos itens da lista de navegação, pra eles ficarem mais legíveis e modernos */}
+.mobile-menu {cursor: pointer; /*deixa o cursor em forma de mão quando passar sobre o menu móvel, pra indicar que ele é clicável */
+display: none; /*esconde o menu móvel por padrão, pra ele só aparecer em telas menores */
+}
+.mobile-menu div {width: 32px; /*define a largura dos elementos do menu móvel como 32 pixels, pra eles ficarem mais legíveis e organizados */
+height: 2px; /*define a altura dos elementos do menu móvel como 2 pixels, pra eles ficarem mais legíveis e organizados */
+background-color: black; /*deixa a cor dos elementos do menu móvel preta, pra eles se destacar mais sobre o fundo branco do site */
+margin: 8px; /*deixa um espaço entre os elementos do menu móvel, pra eles ficarem mais legíveis e organizados */
+transition: 0.3s; /*deixa a mudança de estilo dos elementos do menu móvel mais suave quando o menu móvel for ativado */}
+
+@media (max-width: 999px) {
+    body { overflow-x: hidden; }
+
+    .nav-lista {
+        position: absolute;
+        top: 8vh;
+        right: 0;
+        width: 58vw;
+        height: 92vh;
+        background: #232323;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+        display: none;
+    }
+
+    .nav-lista.active {
+        transform: translateX(0); /* abre o menu */
+        display: flex;
+    }
+
+    .nav-lista li { margin-left: 0; }
+
+    .mobile-menu { display: block; }
+}
+
+@keyframes navLinkFade {
+    from { opacity: 0; transform: translateX(50px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.mobile-menu.active .line1 { transform: rotate(-45deg) translate(-8px, 8px); }
+.mobile-menu.active .line2 { opacity: 0; }
+.mobile-menu.active .line3 { transform: rotate(45deg) translate(-5px, -7px); }
+
+.sobrenos {align-items: center; /*centraliza os elementos dentro do texto, pra eles ficarem mais legíveis e organizados */
+display: flex; /*deixa o texto um flex container, pra centralizar os elementos dentro do texto */
+justify-content: center; /*centraliza o texto dentro do corpo do site, pra ele ficar mais legível e organizado */
+flex-direction: column; /*deixa os elementos dentro do texto organizados em coluna, pra eles ficarem mais legíveis e organizados */
+background-color: #ffffff; /*deixa a cor de fundo do texto cinza, pra ele se destacar mais sobre o fundo branco do site */
+}
+img {border-radius: 12px; /*deixa as bordas da imagem arredondadas, pra ela ficar mais bonita */
+margin-top: 20px; /*deixa um espaço entre a imagem e o texto acima dela, pra ela ficar mais legível e organizada */
+justify-content: center; /*centraliza a imagem dentro do texto, pra ela ficar mais legível e organizada */
+display: flex; /*deixa a imagem um flex container, pra centralizar a imagem dentro do texto */
+margin: 0 auto; /*deixa um espaço entre a imagem e o texto ao lado dela, pra ela ficar mais legível e organizada */
+display: block;/*deixa a imagem um elemento de bloco, pra ela ocupar toda a largura disponível e ficar mais legível e organizada */
+flex-direction: space-between; 
+}
+.rodape {background-color: #2a2a2a; /*deixa a cor de fundo do rodapé cinza, pra ele se destacar mais sobre o fundo branco do site */
+color: white; /*deixa a cor do texto do rodapé branca, pra ele se destacar mais sobre o fundo cinza do rodapé */
+text-align: center; /*centraliza o texto dentro do rodapé, pra ele ficar mais legível e organizado */
+padding: 20px; /*deixa um espaço entre o texto do rodapé e o fundo do rodapé, pra ele ficar mais legível e organizado */
+font-family: Arial, Helvetica, sans-serif; /*define a fonte do rodapé como Arial, ou uma fonte sans-serif caso a Arial não esteja disponível, pra deixar o texto do rodapé mais legível e moderno */
+}
+.contatos {align-items: center; /*centraliza os elementos dentro do texto, pra eles ficarem mais legíveis e organizados */
+display: flex; /*deixa o texto um flex container, pra centralizar os elementos dentro do texto */
+justify-content: center; /*centraliza o texto dentro do corpo do site, pra ele ficar mais legível e organizado */
+min-height: 200px; /*define a altura mínima do texto como 200 pixels, pra ele ficar mais legível e organizado */
+}
+.contatos a {display: flex; /*deixa os links de contato um flex container, pra organizar os links dentro do texto de contato */
+height: 85px;
+width: 85px;
+margin: 0 15px;
+align-items: center; /*centraliza os links de contato dentro do texto de contato, pra eles ficarem mais legíveis e organizados */
+    justify-content: center; /*centraliza os links de contato dentro do texto de contato, pra eles ficarem mais legíveis e organizados */
+text-decoration: none; /*remove o sublinhado do texto dos links de contato */
+box-shadow: 6px 6px 10px -1px rgba(168,208,224,0.14) 6px 6px 10px -1px rgba(66,141,240,0.14);
+transition: 0.5s;}
+.contatos a i {font-size: 32px; /*define o tamanho da fonte dos ícones de contato como 32 pixels, pra eles se destacar mais sobre o fundo branco do site */
+color: #2a2a2a; /*deixa a cor dos ícones de contato cinza, pra eles se destacar mais sobre o fundo branco do site */
+}
+.contatos a:hover i{transform: scale(0.90); /*deixa os links de contato um pouco menores quando passar o mouse sobre eles, pra indicar que eles são clicáveis */ 
+color: #fff;}     
+.contatos a:hover {transform: scale(0.80); /*deixa os links de contato um pouco menores quando passar o mouse sobre eles, pra indicar que eles são clicáveis */ 
+}   </style>
+    <nav>
+        <a class="logo" href="#">Academia JFIT </a>
+        <div class="mobile-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class= "nav-lista"> 
+            <li><a href="#">Home</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#sobrenos">Sobre Nós</a></li>
+            <li><a href="#contatos">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <section class="banner"> <!-- seção do banner, que é a parte mais importante do site, onde fica a imagem de fundo e o texto principal -->
+        <div class="titulo">
+            <h1>Conheça a nossa academia e sinta a sua evolução!!</h1>  
+            <h2>Treinos intensos, resultados reais</h2>
+            <button>Começar Agora</button>
+</div>
+</section>
+<section id="servicos" class="corpo-do-site"> <!-- nova seção para o conteúdo do site -->
+    <div class="texto">
+        <h1>Serviços</h1>
+        <p>Aqui, oferecemos uma ampla gama de serviços para atender nossos clientes, desde o crossfit até a musculação!</p>
+    </div> 
+</section>
+<section class="carrosel">
+    <div class="carrosel-grupo">
+        <div class="card">
+            <img src="download (1).jpg.jpeg" alt="Imagem do serviço 1">
+            <h3>Crossfit</h3>
+            <p>Treinos intensos e variados para melhorar sua força, resistência e condicionamento físico.</p>
+            <button>Saiba Mais</button>
+        </div>
+         <div class="card">
+            <img src="download (2).jpg.jpeg" alt="Imagem do serviço 2">
+            <h3>Musculação</h3>
+            <p>Treinos personalizados para ganhar massa muscular, definir o corpo e melhorar a saúde.</p>
+            <button>Saiba Mais</button>
+         </div>
+          <div class="card">
+            <img src="Honorato-aspect-ratio-512-320.webp" alt="Imagem do serviço 3">
+            <h3>Voleibol</h3>
+            <p>Jogos de voleibol para melhorar sua coordenação, resistência e habilidades sociais.</p>
+            <button>Saiba Mais</button>
+          </div>
+    </div>
+     <div class="carrosel-grupo" aria-hidden="true"> <!-- nova div para o segundo grupo de cards, com a mesma estrutura do primeiro grupo, mas com a propriedade aria-hidden para indicar que é um conteúdo duplicado e não deve ser lido por leitores de tela -->
+        <div class="card">
+            <img src="download (1).jpg.jpeg" alt="Imagem do serviço 1">
+            <h3>Crossfit</h3>
+            <p>Treinos intensos e variados para melhorar sua força, resistência e condicionamento físico.</p>
+            <button>Saiba Mais</button>
+        </div>
+         <div class="card">
+            <img src="download (2).jpg.jpeg" alt="Imagem do serviço 2">
+            <h3>Musculação</h3>
+            <p>Treinos personalizados para ganhar massa muscular, definir o corpo e melhorar a saúde.</p>
+            <button>Saiba Mais</button>
+         </div>
+          <div class="card">
+            <img src="Honorato-aspect-ratio-512-320.webp" alt="Imagem do serviço 3">
+            <h3>Voleibol</h3>
+            <p>Jogos de voleibol para melhorar sua coordenação, resistência e habilidades sociais.</p>
+            <button>Saiba Mais</button>
+          </div>
+</section>
+<section id="sobrenos" class="sobrenos">
+    <h1>Sobre Nós</h1>
+    <div class="sobrenos-content">
+        <p>A nossa academia é equipada com equipamentos de ultima geração, perfeito para o seu treino!! Também temos quadras para a prática esportiva do voleibol, para você e seus familiares poderem se divertir ao máximo!</p>
+        <p>Além disso, contamos com uma equipe de profissionais altamente qualificados, prontos para te ajudar a alcançar seus objetivos de forma segura e eficiente. Venha fazer parte da nossa comunidade fitness e descubra o seu potencial máximo!</p>
+        <p>Estamos localizados em um local de fácil acesso, com estacionamento disponível para nossos clientes. Venha nos visitar e experimente a nossa academia por si mesmo!</p>
+        <p>A seguir, veja uma pequena imagem das nossas estruturas:</p>
+    </br>
+        <img src="32a1c544-1d9f-437e-a2d5-b1303e635086.png" alt="Imagem da academia" height="500px" width="1000px">
+    </div>
+</section>
+<br />
+<br />
+<section id="contatos" class="contatos">
+    <a href="https://api.whatsapp.com/send/?phone=558587254207&text&type=phone_number&app_absent=0"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/jp._3/"><i class="fa-brands fa-instagram"></i></a>
+</section>
+<footer class="rodape">
+    <p>© 2024 Academia JFIT. Todos os direitos reservados.</p>
+</footer>
+<script src="mobile-navbar.js"></script>
+</body>
+</html>
