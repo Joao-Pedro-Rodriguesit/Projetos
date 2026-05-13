@@ -1,0 +1,885 @@
+npm error config prefix cannot be changed from project config: /home/claude/.npmrc.
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>João Pedro Rodrigues — Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --cream: #f9f7f2;
+        --ink: #1a1a18;
+        --ink-muted: #6b6a63;
+        --ink-light: #a8a79f;
+        --accent: #1d6b4a;
+        --accent-light: #e1f5ee;
+        --accent-mid: #0f6e56;
+        --border: rgba(26, 26, 24, 0.1);
+        --white: #ffffff;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(249, 247, 242, 0.88);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 5vw;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo {
+        font-family: "DM Serif Display", serif;
+        font-size: 18px;
+        color: var(--ink);
+        text-decoration: none;
+        letter-spacing: -0.3px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-size: 13.5px;
+        font-weight: 400;
+        color: var(--ink-muted);
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .nav-toggle.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(249, 247, 242, 0.97);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 5vw;
+        z-index: 99;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        text-decoration: none;
+        font-size: 15px;
+        color: var(--ink-muted);
+        transition: color 0.2s;
+      }
+      .mobile-menu a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        min-height: 100vh;
+        padding: 120px 5vw 80px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-bg-circle {
+        position: absolute;
+        right: -80px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        background: var(--accent-light);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+      .hero-inner {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        width: 100%;
+        position: relative;
+      }
+      .hero-content {
+        max-width: 580px;
+      }
+      .hero-photo-wrap {
+        flex-shrink: 0;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--white);
+        box-shadow: 0 8px 32px rgba(29, 107, 74, 0.18);
+        opacity: 0;
+        animation: fadeUp 0.7s 0.5s forwards;
+      }
+      .hero-photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent-light);
+        color: var(--accent-mid);
+        border: 1px solid rgba(15, 110, 86, 0.2);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 12.5px;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.1s forwards;
+      }
+      .hero-tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        color: var(--ink);
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.2s forwards;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-desc {
+        font-size: 17px;
+        color: var(--ink-muted);
+        max-width: 520px;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        font-weight: 300;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.3s forwards;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.4s forwards;
+      }
+
+      .btn-primary {
+        background: var(--ink);
+        color: var(--white);
+        border: none;
+        padding: 13px 28px;
+        border-radius: 100px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: var(--accent);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1.5px solid var(--border);
+        padding: 13px 28px;
+        border-radius: 100px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-1px);
+      }
+
+      section {
+        padding: 100px 5vw;
+      }
+      .section-label {
+        font-size: 11.5px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        display: block;
+      }
+      h2 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+        margin-bottom: 1rem;
+      }
+      .section-subtitle {
+        font-size: 16px;
+        color: var(--ink-muted);
+        max-width: 500px;
+        font-weight: 300;
+        margin-bottom: 3.5rem;
+      }
+
+      .about {
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .about-text p {
+        font-size: 16px;
+        color: var(--ink-muted);
+        line-height: 1.75;
+        font-weight: 300;
+        margin-bottom: 1.2rem;
+      }
+      .about-text p strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        padding-top: 1rem;
+      }
+      .stat-card {
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.5rem;
+      }
+      .stat-number {
+        font-family: "DM Serif Display", serif;
+        font-size: 2.5rem;
+        color: var(--ink);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .stat-label {
+        font-size: 13px;
+        color: var(--ink-muted);
+        font-weight: 400;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+      .skill-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2rem;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--accent);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .skill-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .skill-card:hover::after {
+        opacity: 1;
+      }
+      .skill-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--accent-light);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+        font-size: 20px;
+      }
+      .skill-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+      .skill-desc {
+        font-size: 13.5px;
+        color: var(--ink-muted);
+        line-height: 1.6;
+        font-weight: 300;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 1.2rem;
+      }
+      .tag {
+        background: var(--cream);
+        color: var(--ink-muted);
+        border: 1px solid var(--border);
+        font-size: 11.5px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 100px;
+        letter-spacing: 0.02em;
+      }
+
+      .projects {
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      .project-card {
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+        background: var(--cream);
+        transition:
+          transform 0.2s,
+          border-color 0.2s;
+      }
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(29, 107, 74, 0.3);
+      }
+      .project-header {
+        padding: 2rem 2rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .project-number {
+        font-size: 11.5px;
+        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.8rem;
+        display: block;
+      }
+      .project-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+      }
+      .project-desc {
+        font-size: 13.5px;
+        color: var(--ink-muted);
+        line-height: 1.6;
+        font-weight: 300;
+      }
+      .project-footer {
+        padding: 1.2rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .project-tech {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .contact-card {
+        background: var(--ink);
+        border-radius: 24px;
+        padding: 4rem;
+        text-align: center;
+        color: var(--white);
+      }
+      .contact-card h2 {
+        color: var(--white);
+        margin-bottom: 1rem;
+      }
+      .contact-card p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 16px;
+        font-weight: 300;
+        max-width: 440px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.7;
+      }
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 24px;
+        border-radius: 100px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          border-color 0.2s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .contact-link-white {
+        background: var(--white);
+        color: var(--ink);
+      }
+      .contact-link-outline {
+        background: transparent;
+        color: var(--white);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+      }
+      .contact-link:hover {
+        transform: translateY(-2px);
+      }
+      .contact-link-white:hover {
+        background: var(--accent-light);
+      }
+      .contact-link-outline:hover {
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      footer {
+        padding: 2rem 5vw;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--ink-light);
+      }
+      .divider {
+        width: 40px;
+        height: 2px;
+        background: var(--accent);
+        margin: 1.5rem 0 2.5rem;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner {
+          flex-direction: column-reverse;
+          align-items: flex-start;
+          gap: 2rem;
+        }
+        .hero-photo-wrap {
+          width: 160px;
+          height: 160px;
+        }
+      }
+      @media (max-width: 720px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .contact-card {
+          padding: 2.5rem 1.5rem;
+        }
+        h1 {
+          letter-spacing: -0.5px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="nav-logo">JP.</a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Abrir menu" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#sobre" onclick="closeMenu()">Sobre</a>
+      <a href="#habilidades" onclick="closeMenu()">Habilidades</a>
+      <a href="#projetos" onclick="closeMenu()">Projetos</a>
+      <a href="#contato" onclick="closeMenu()">Contato</a>
+    </div>
+
+    <section class="hero">
+      <div class="hero-bg-circle"></div>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-tag">Disponível para oportunidades</div>
+          <h1>João Pedro<br /><em>Rodrigues</em></h1>
+          <p class="hero-desc">
+            Estudante de Ensino Médio Integrado ao Técnico em Informática —
+            apaixonado por desenvolvimento web, Python e banco de dados.
+            Transformando conhecimento em soluções reais.
+          </p>
+          <div class="hero-actions">
+            <a href="#projetos" class="btn-primary">Ver projetos</a>
+            <a href="#contato" class="btn-outline">Entrar em contato</a>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <img
+            src="foto-perfil.jpg"
+            alt="Foto de João Pedro Rodrigues"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-label">Sobre mim</span>
+          <h2>Estudante, curioso e<br /><em>em constante evolução</em></h2>
+          <div class="divider"></div>
+          <p>
+            Tenho <strong>17 anos</strong> e estou no
+            <strong
+              >3º ano do Ensino Médio Integrado ao Técnico em
+              Informática</strong
+            >. Desde o início do curso, me apaixonei pela área de tecnologia —
+            especialmente pelo poder que o código tem de resolver problemas do
+            dia a dia.
+          </p>
+          <p>
+            Ao longo da formação, desenvolvi habilidades em
+            <strong>desenvolvimento web</strong>,
+            <strong>programação em Python</strong> e
+            <strong>banco de dados</strong>. Gosto de aprender na prática,
+            construindo projetos que façam sentido no mundo real.
+          </p>
+          <p>
+            Busco minha primeira experiência profissional para aplicar o que
+            aprendi e crescer junto com uma equipe comprometida com tecnologia
+            de qualidade.
+          </p>
+        </div>
+        <div class="about-stats reveal" style="transition-delay: 0.15s">
+          <div class="stat-card">
+            <div class="stat-number">3º</div>
+            <div class="stat-label">Ano do curso técnico em Informática</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Linguagens e tecnologias estudadas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">Web</div>
+            <div class="stat-label">Desenvolvimento com HTML, CSS e JS</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">SQL</div>
+            <div class="stat-label">Banco de dados</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <span class="section-label reveal">Habilidades</span>
+      <h2 class="reveal">O que eu sei fazer</h2>
+      <p class="section-subtitle reveal">
+        Tecnologias e ferramentas que aprendi ao longo da formação técnica.
+      </p>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-title">Desenvolvimento Web</div>
+          <div class="skill-desc">
+            Criação de páginas web HTML, estilização com CSS e interatividade
+            com JavaScript.
+          </div>
+          <div class="skill-tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span
+            ><span class="tag">JavaScript</span
+            ><span class="tag">Responsivo</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" style="transition-delay: 0.1s">
+          <div class="skill-icon">🐍</div>
+          <div class="skill-title">Python</div>
+          <div class="skill-desc">
+            Programação orientada a objetos, lógica de programação e algoritmos
+            com Python.
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Python 3</span><span class="tag">POO</span
+            ><span class="tag">Algoritmos</span
+            ><span class="tag">Automação</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" style="transition-delay: 0.2s">
+          <div class="skill-icon">🗄️</div>
+          <div class="skill-title">Banco de Dados</div>
+          <div class="skill-desc">
+            Modelagem relacional, consultas SQL, criação de tabelas e
+            relacionamentos entre entidades.
+          </div>
+          <div class="skill-tags">
+            <span class="tag">SQL</span><span class="tag">MySQL</span
+            ><span class="tag">Modelagem</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" style="transition-delay: 0.3s">
+          <div class="skill-icon">🛠️</div>
+          <div class="skill-title">Ferramentas & Outros</div>
+          <div class="skill-desc">
+            Edição de código com VS Code e fundamentos de lógica e redes de
+            computadores.
+          </div>
+          <div class="skill-tags">
+            <span class="tag">VS Code</span><span class="tag">Lógica</span
+            ><span class="tag">Redes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projetos">
+      <span class="section-label reveal">Projetos</span>
+      <h2 class="reveal">O que já construí</h2>
+      <p class="section-subtitle reveal">
+        Projetos desenvolvidos durante o curso técnico — da ideia ao código
+        funcionando.
+      </p>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-header">
+            <span class="project-number">01 — Web</span>
+            <div class="project-title">
+              Site de Portfólio Pessoal e Site de Academia
+            </div>
+            <p class="project-desc">
+              Sites desenvolvidos para apresentar habilidades e projetos,
+              utilizando HTML, CSS e JavaScript com foco em boas práticas.
+            </p>
+          </div>
+          <div class="project-footer">
+            <div class="project-tech">
+              <span class="tag">HTML</span><span class="tag">CSS</span
+              ><span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal" style="transition-delay: 0.1s">
+          <div class="project-header">
+            <span class="project-number">02 — Python</span>
+            <div class="project-title">Sistema de Cadastro em Python</div>
+            <p class="project-desc">
+              Aplicação de cadastro com menus, validação de dados e organização
+              por funções e módulos. Exercício prático de lógica e POO.
+            </p>
+          </div>
+          <div class="project-footer">
+            <div class="project-tech">
+              <span class="tag">Python</span><span class="tag">POO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" style="padding: 100px 5vw">
+      <div class="contact-card reveal">
+        <span class="section-label" style="color: rgba(255, 255, 255, 0.5)"
+          >Contato</span
+        >
+        <h2>Vamos conversar?</h2>
+        <p>
+          Estou à disposição para oportunidades de estágio, projetos e
+          aprendizado. Sinta-se à vontade para entrar em contato.
+        </p>
+        <div class="contact-links">
+          <a
+            href="mailto:joaopedrorodriguesit@gmail.com"
+            class="contact-link contact-link-white"
+            >✉️ joaopedrorodriguesit@gmail.com</a
+          >
+          <a
+            href="https://www.linkedin.com/in/joão-pedro-rodrigues-alves-de-oliveira-565a8b408"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link contact-link-outline"
+            >in LinkedIn</a
+          >
+          <a
+            href="https://github.com/Joao-Pedro-Rodriguesit"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link contact-link-outline"
+            >⌥ GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 João Pedro Rodrigues Alves de Oliveira</span>
+      <span>Técnico em Informática · Fortaleza, CE</span>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      const navToggle = document.getElementById("navToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      navToggle.addEventListener("click", () => {
+        navToggle.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
+      });
+      function closeMenu() {
+        navToggle.classList.remove("open");
+        mobileMenu.classList.remove("open");
+      }
+    </script>
+  </body>
+</html>
